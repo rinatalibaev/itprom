@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Фрагменты</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    // Фрагмент для простого текстового поля
+    <div th:fragment="simple-text-field(textFieldId, prependText)">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" th:text="${prependText}"></span>
+            </div>
+            <input class="form-control" th:id="${textFieldId}" type="text"/>
+        </div>
+    </div>
+
+    // Фрагмент для текстового поля с невозможностью редактирования
+    <div th:fragment="simple-text-field-readonly(textFieldId, prependText)">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" th:text="${prependText}"></span>
+            </div>
+            <input class="form-control" th:id="${textFieldId}" type="text" readonly/>
+        </div>
+    </div>
+    // Фрагмент для текстового поля с невозможностью редактирования
+    <div th:fragment="simple-text-field-with-value (textFieldId, prependText, defaultValue)">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" th:text="${prependText}"></span>
+            </div>
+            <input class="form-control" th:id="${textFieldId}" type="text" th:value="${defaultValue}"/>
+        </div>
+    </div>
+    // Фрагмент для текстового поля с невозможностью редактирования
+    <div th:fragment="simple-text-field-readonly-with-value(textFieldId, prependText, defaultValue)">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" th:text="${prependText}"></span>
+            </div>
+            <input class="form-control" th:id="${textFieldId}" type="text" th:value="${defaultValue}" readonly/>
+        </div>
+    </div>
+
+    // Фрагмент для многострочного текстового поля
+    <div th:fragment="simple-textarea-field(textAreaId, prependText)">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" th:text="${prependText}"></span>
+            </div>
+            <textarea class="form-control" th:id="${textAreaId}" type="text"></textarea>
+        </div>
+    </div>
+
+    // Фрагмент для многострочного текстового поля cо значением
+    <div th:fragment="simple-textarea-field-with-value (textAreaId, prependText, defaultValue)">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" th:text="${prependText}"></span>
+            </div>
+            <textarea class="form-control" th:id="${textAreaId}" type="text" th:text="${defaultValue}"></textarea>
+        </div>
+    </div>
+
+    <textarea></textarea>
+
+    // Фрагмент для простых выпадающих списков, сформированных из списков (для Departament)
+    <div th:fragment="simple-dropdown-list(list, prependText, id, defaultValue)" class="input-group mb-2">
+        <div class="input-group-prepend">
+            <span class="input-group-text" th:text="${prependText}"></span>
+        </div>
+        <select class="form-control" th:id="${id}">
+            <option th:text="${defaultValue.getName()}" th:value="${defaultValue.getId()}"></option>
+            <option th:each="listItem : ${list}" th:text="${listItem.getName()}" th:value="${listItem.getId()}"></option>
+        </select>
+    </div>
+
+    // Фрагмент для поля выбора даты
+    <div th:fragment="simple-data-field(prependText, id, defaultValue)" class="input-group mb-2">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" th:text="${prependText}"></span>
+            </div>
+            <input class="form-control" th:id="${id}" type="date" th:value="${defaultValue}"/>
+        </div>
+    </div>
+
+    // Фрагмент для поля даты с невозможностью редактирования
+    <div th:fragment="simple-data-field-readonly(prependText, id, defaultValue)" class="input-group mb-2">
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <span class="input-group-text" th:text="${prependText}"></span>
+            </div>
+            <input class="form-control" th:id="${id}" type="date" th:value="${defaultValue}" readonly/>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script th:src="@{/js/contract.js}" src="/static/js/contract.js"></script>
+</body>
+</html>

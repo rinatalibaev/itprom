@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Отдел</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css" th:href="@{/css/styles.css}">
+</head>
+
+<body>
+
+<div class="container-fluid my-3" style="width: 60%">
+    <div th:replace="fragments/BootstrapElements::simple-text-field-readonly-with-value('id', 'ID', ${department.getId()})"></div>
+    <div th:replace="fragments/BootstrapElements::simple-text-field-with-value('name', 'Name', ${department.getName()})"></div>
+    <div th:replace="fragments/BootstrapElements::simple-text-field-with-value('note', 'Note', ${department.getNote()})"></div>
+    <div th:replace="fragments/BootstrapElements::simple-dropdown-list(${departmentsList}, 'ParentDepartment', 'parentDepartment', ${parentDepartment})"></div>
+    <div class="text-center mt-3">
+        <button class="btn btn-primary" id="saveEditDepartment">Сохранить</button>
+        <button onclick="window.location = '/department/getAll'" class="btn btn-secondary" id="departmentsOpenButton">К списку отделов</button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script th:src="@{/js/department.js}" src="/static/js/department.js"></script>
+<script>
+    // localStorage.removeItem('selectedContract');
+    localStorage.clear();
+</script>
+</body>
+</html>
