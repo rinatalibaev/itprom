@@ -6,6 +6,9 @@ $(document).ready(function(){
     } else {
         departmentsTable = $('#departmentsTable').DataTable({
             "cursor": "pointer",
+            "language": {
+                "url": "dataTables.russian.lang"
+            },
             columns: [
                 {"data": "id"},
                 {"data": "name"},
@@ -37,17 +40,17 @@ $(document).ready(function(){
         departmentData.id = $('#id').val();
         departmentData.name = $('#name').val();
         departmentData.note = $('#note').val();
-        departmentData.parentDepartment = $('#parentDepartment').val() == "" ? null : {"id":$('#parentDepartment').val()};
+        departmentData.parentDepartment = $('#parentDepartment').val() === "" ? null : {"id":$('#parentDepartment').val()};
         $.ajax({
             type : "POST",
             contentType: "application/json; charset=utf-8",
             url : window.location.origin + "/department/edit",
             data : JSON.stringify(departmentData),
-            success : function(response) {
+            success : function() {
                 alert('Успешно сохранено');
                 window.location = "/department/getAll";
             },
-            error: function(response) {
+            error: function() {
                 alert('Не удалось сохранить');
             },
             complete: function() {
@@ -68,11 +71,11 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8",
             url : window.location.origin + "/department/create",
             data : JSON.stringify(departmentData),
-            success : function(response) {
+            success : function() {
                 alert('Успешно сохранено');
                 window.location = "/department/getAll";
             },
-            error: function(response) {
+            error: function() {
                 alert('Не удалось сохранить');
             },
             complete: function() {
@@ -84,19 +87,19 @@ $(document).ready(function(){
 
 });
 
-// Удаляем профессию
+// Удаляем отдел
 function deleteDepartment(departmentId) {
     $.ajax({
         type : "POST",
         contentType: "application/json; charset=utf-8",
         url : window.location.origin + "/department/delete?departmentId=" + departmentId,
         data : {},
-        success : function(response) {
+        success : function() {
             alert('Успешно удалено');
             window.location = "/department/getAll";
         },
-        error: function(response) {
-            alert('Не удалось удалить');
+        error: function() {
+            alert('Не удалось удалить. Возможно у этого отдела есть подчиненные отделы или в этом отделе числятся сотрудники');
             window.location = "/department/getAll";
         },
         complete: function() {

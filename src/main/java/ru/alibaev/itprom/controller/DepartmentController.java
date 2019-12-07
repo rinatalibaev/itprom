@@ -41,8 +41,8 @@ public class DepartmentController {
     @GetMapping("/create")
     public String createNewDepartment (Model model) {
         List<Department> departmentsList = departmentService.getAll();
-        model.addAttribute("departmentDefault", departmentsList.get(0));
-        departmentsList.remove(0);
+        model.addAttribute("departmentDefault", departmentsList.isEmpty() ? "" : departmentsList.get(0));
+        if (!departmentsList.isEmpty()) departmentsList.remove(0);
         model.addAttribute("departmentsList", departmentsList);
         return "/department/new_department";
     }

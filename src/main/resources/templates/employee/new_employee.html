@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Новый отдел</title>
+        <title>Новый сотрудник</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
@@ -11,14 +11,15 @@
     <body>
         <div class="container-fluid my-3" style="width: 60%">
             <div class="card text-center">
-                <div th:replace="fragments/BootstrapElements :: nav-fragment('department')"></div>
+                <div th:replace="fragments/BootstrapElements :: nav-fragment('employee')"></div>
                 <div class="card-body">
-                    <div th:replace="fragments/BootstrapElements::simple-text-field-with-value('name', 'Name', '')"></div>
-                    <div th:replace="fragments/BootstrapElements::simple-text-field-with-value('note', 'Note', '')"></div>
-                    <div th:replace="fragments/BootstrapElements::simple-dropdown-list(${departmentsList}, 'ParentDepartment', 'parentDepartment', ${departmentDefault})"></div>
+                    <div th:replace="fragments/BootstrapElements::simple-text-field-with-value('fio', 'ФИО', '')"></div>
+                    <div th:replace="fragments/BootstrapElements::simple-text-field-with-value('note', 'Примечание', '')"></div>
+                    <div th:replace="fragments/BootstrapElements::simple-dropdown-list(${departmentsList}, 'Отдел', 'department', ${departmentDefault})"></div>
+                    <div th:replace="fragments/BootstrapElements::simple-dropdown-list(${professionsList}, 'Профессия', 'profession', ${professionDefault})"></div>
                     <div class="text-center mt-3">
-                        <button class="btn btn-primary" id="createDepartment">Сохранить</button>
-                        <button onclick="window.location = '/department/getAll'" class="btn btn-secondary" id="departmentsOpenButton">К списку отделов</button>
+                        <button class="btn btn-primary" id="createEmployee">Сохранить</button>
+                        <button onclick="window.location = '/employee/getAll'" class="btn btn-secondary" id="employeesOpenButton">К списку сотрудников</button>
                     </div>
                 </div>
             </div>
@@ -28,6 +29,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-        <script th:src="@{/js/department.js}" src="/static/js/department.js"></script>
+        <script th:src="@{/js/employee.js}" src="/static/js/employee.js"></script>
     </body>
 </html>

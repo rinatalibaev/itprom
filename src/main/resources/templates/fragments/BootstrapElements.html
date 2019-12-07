@@ -75,7 +75,7 @@
             <span class="input-group-text" th:text="${prependText}"></span>
         </div>
         <select class="form-control" th:id="${id}">
-            <option th:text="${defaultValue.getName()}" th:value="${defaultValue.getId()}"></option>
+            <option th:text="${defaultValue != '' ? defaultValue.getName() : ''}" th:value="${defaultValue != '' ? defaultValue.getId() : ''}"></option>
             <option th:each="listItem : ${list}" th:text="${listItem.getName()}" th:value="${listItem.getId()}"></option>
         </select>
     </div>
@@ -98,6 +98,20 @@
             </div>
             <input class="form-control" th:id="${id}" type="date" th:value="${defaultValue}" readonly/>
         </div>
+    </div>
+
+    <div th:fragment="nav-fragment(pageGroup)" class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a th:class="${pageGroup == 'profession' ? 'nav-link active' : 'nav-link'}" href="/profession/getAll">Профессии</a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${pageGroup == 'department' ? 'nav-link active' : 'nav-link'}" href="/department/getAll">Отделы</a>
+            </li>
+            <li class="nav-item">
+                <a th:class="${pageGroup == 'employee' ? 'nav-link active' : 'nav-link'}" href="/employee/getAll">Сотрудники</a>
+            </li>
+        </ul>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>

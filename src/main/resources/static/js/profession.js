@@ -6,6 +6,9 @@ $(document).ready(function(){
     } else {
         professionsTable = $('#professionsTable').DataTable({
             "cursor": "pointer",
+            "language": {
+                "url": "dataTables.russian.lang"
+            },
             columns: [
                 {"data": "id"},
                 {"data": "name"},
@@ -40,11 +43,11 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8",
             url : window.location.origin + "/profession/edit",
             data : JSON.stringify(professionData),
-            success : function(response) {
+            success : function() {
                 alert('Успешно сохранено');
                 window.location = "/profession/getAll";
             },
-            error: function(response) {
+            error: function() {
                 alert('Не удалось сохранить');
             },
             complete: function() {
@@ -64,11 +67,11 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8",
             url : window.location.origin + "/profession/create",
             data : JSON.stringify(professionData),
-            success : function(response) {
+            success : function() {
                 alert('Успешно сохранено');
                 window.location = "/profession/getAll";
             },
-            error: function(response) {
+            error: function() {
                 alert('Не удалось сохранить');
             },
             complete: function() {
@@ -87,11 +90,11 @@ function deleteProfession(professionId) {
         contentType: "application/json; charset=utf-8",
         url : window.location.origin + "/profession/delete?professionId=" + professionId,
         data : {},
-        success : function(response) {
+        success : function() {
             alert('Успешно удалено');
             window.location = "/profession/getAll";
         },
-        error: function(response) {
+        error: function() {
             alert('Не удалось удалить');
         },
         complete: function() {
